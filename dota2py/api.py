@@ -91,7 +91,7 @@ def json_request_response(f):
     def wrapper(*args, **kwargs):
         response = f(*args, **kwargs)
         response.raise_for_status()
-        return json.loads(response.content.decode('utf-8'))
+        return json.loads(response.content.decode('utf-8', errors='ignore'))
 
     API_FUNCTIONS[f.__name__] = f
     return wrapper
